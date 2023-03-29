@@ -101,4 +101,4 @@ hours = seconds // 3600
 minutes = (seconds % 3600) // 60
 seconds = seconds % 60
 
-print(f"Tiempo de ejecucion: {days} días, {hours} horas, {minutes} minutos, {seconds} segundos")
+print(f"Total time: {days} days, {hours} hours, {minutes} minutes, {seconds} seconds")
