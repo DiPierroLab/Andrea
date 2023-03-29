@@ -90,7 +90,7 @@ datafin.sort()
 
 df = pd.DataFrame(datafin, columns = ['Specie'])
 
-#df.to_csv('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/DNAZoo_SpeciesReduced.csv', encoding='utf-8', index=False, header=True)
+df.to_csv('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/DNAZoo_SpeciesReduced.csv', encoding='utf-8', index=False, header=True)
 
 end_time = datetime.datetime.now()  # Detener el contador de tiempo
 
