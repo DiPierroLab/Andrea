@@ -42,7 +42,7 @@ species = pd.read_csv('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/DNAZoo_Spe
 main_url = 'https://dnazoo.s3.wasabisys.com/'
 
 
-for j in range(0,10):
+for j in range(len(species)):
     
     url_specie =  main_url + species.Specie[j]
     
