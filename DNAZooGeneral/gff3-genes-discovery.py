@@ -50,7 +50,7 @@ species = pd.read_csv('/home/j.falcn/DNAZoo_SpeciesReduced.csv')   #there are 10
 main_url = 'https://dnazoo.s3.wasabisys.com/'
 
 
-for j in [59,60,77,78,85,86]:
+for j in range(len(species)):
     
     url_specie =  main_url + species.Specie[j]
     
