@@ -59,15 +59,12 @@ def distance (df):
 ######### CARGAR LAS ANOTACIONES DE LA ESPECIE DE REFERENCIA
 ######### ESPECIE A LA QUE SE LE VAN A RASTREAR LOS PARES DE GENES EN LAS ESPECIES RESTANTES
 
-dir = '/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/GeneAnnotation/'
+dir = '/Users/andreafalcon/Documents/GeneAnnotation/'
 
-contenido = os.listdir(dir)
+species = pd.read_csv('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/GeneAnnotation_SpeciesOG.csv')
 
-csv = []
-for fichero in contenido:
-    if os.path.isfile(os.path.join(dir, fichero)) and fichero.endswith('.csv'):
-        csv.append(fichero)
-        
+csv = list(species.Specie)
+
 csv.sort()
 
 for j in [0]:
@@ -141,8 +138,8 @@ for j in [0]:
         df_pairtrack_gd.loc[len(df_pairtrack_gd)] = vec_concat_gd
         
         
-    df_pairtrack_dd.to_hdf('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/TrackPairwaiseGenes/'+csv[j].replace('.csv','') +'.h5', key='discrete_distance')
-    df_pairtrack_gd.to_hdf('/Users/andreafalcon/Dropbox/PostDoc_NEU/DNAZoo/TrackPairwaiseGenes/'+csv[j].replace('.csv','') +'.h5', key='gap_distance')
+    df_pairtrack_dd.to_hdf('/Users/andreafalcon/Documents/TrackPairwaiseGenes/'+csv[j].replace('.csv','') +'.h5', key='discrete_distance')
+    df_pairtrack_gd.to_hdf('/Users/andreafalcon/Documents/TrackPairwaiseGenes/'+csv[j].replace('.csv','') +'.h5', key='gap_distance')
 
 
 end_time = datetime.datetime.now()  # Detener el contador de tiempo
