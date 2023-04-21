@@ -63,12 +63,12 @@ for j in tsv:
         df_unsplit = df_unsplit.reset_index(drop=True)
         
         df_unsplit = clean_df(df_unsplit)
-        
-        df_unsplit['ChromA'] = df_unsplit.apply(lambda row: str(j.split('-')[0] + '_Ch-' + row['ChromA']), axis=1)
-        df_unsplit['ChromB'] = df_unsplit.apply(lambda row: str(j.split('-')[1] + '_Ch-' + row['ChromB']), axis=1)
              
         df_unsplit['GeneA'] = df_unsplit.apply(lambda row: str(j.split('-')[0] + '_G-' + row['GeneIndexA'] + '-' + row['ChromA']), axis=1)
         df_unsplit['GeneB'] = df_unsplit.apply(lambda row: str(j.split('-')[1] + '_G-' + row['GeneIndexB'] + '-' + row['ChromB']), axis=1)
+        
+        df_unsplit['ChromA'] = df_unsplit.apply(lambda row: str(j.split('-')[0] + '_Ch-' + row['ChromA']), axis=1)
+        df_unsplit['ChromB'] = df_unsplit.apply(lambda row: str(j.split('-')[1] + '_Ch-' + row['ChromB']), axis=1)
         
         df_net = df_unsplit[['ChromA','GeneA', 'OGA' ,'ChromB','GeneB', 'OGB']]
         
