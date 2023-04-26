@@ -30,7 +30,7 @@ import datetime
 
 start_time = datetime.datetime.now()
 
-with open('/home/j.falcn/Orthogroups.txt', 'r') as archivo:
+with open('/home/j.falcn/Info/Orthogroups.txt', 'r') as archivo:
     
     orthogroups = {}
     
@@ -45,7 +45,7 @@ with open('/home/j.falcn/Orthogroups.txt', 'r') as archivo:
             orthogroups[part[0]] = genes
             
 
-species = pd.read_csv('/home/j.falcn/DNAZoo_SpeciesReduced.csv')   #there are 103 species in this file
+species = pd.read_csv('/home/j.falcn/Info/DNAZoo_SpeciesReduced.csv')   #there are 103 species in this file
 
 main_url = 'https://dnazoo.s3.wasabisys.com/'
 
@@ -139,7 +139,7 @@ for j in range(len(species)):
             
             elif(species.Specie[j] == 'Struthio_camelus/'):
                 
-                n_chrom * 40
+                n_chrom = 40
             
             else:
                 n_chrom = int(data['chromlengthAssembly']['karyotype'].split('=')[1])/2
@@ -151,7 +151,7 @@ for j in range(len(species)):
             for i in range(len(array)):
             
                 df_list.append(df.loc[df["seq_id"] == array[i]])
-                df_list[i] = df_list[i].sort_values(by = 'start', ascending = True)
+                #df_list[i] = df_list[i].sort_values(by = 'start', ascending = True)
                 df_list[i] = df_list[i].reset_index(drop = True)
                 
             df_chrom = pd.concat(df_list, ignore_index=True)
@@ -168,11 +168,15 @@ for j in range(len(species)):
                 gen = df_chrom.gene_name[k]
                 
                 for clave,valor in orthogroups.items():
+                    
                     if gen in valor:
-                        if clave == 'OG0000000':
-                            df_chrom['orthogroup_id'][k] = '0'
-                        else:
-                            df_chrom['orthogroup_id'][k] = clave.lstrip('OG0')
+                        
+                        df_chrom['orthogroup_id'][k] = clave
+                        
+                        # if clave == 'OG0000000':
+                        #     df_chrom['orthogroup_id'][k] = '0'
+                        # else:
+                        #     df_chrom['orthogroup_id'][k] = clave.lstrip('OG0')
                         break
             
             df_chrom = df_chrom[['seq_id','start','end','strand','gene_id','gene_name','orthogroup_id','attributes']]
